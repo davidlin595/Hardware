@@ -1,0 +1,2 @@
+# Hardware
+hardware related information
