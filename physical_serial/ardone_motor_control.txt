@@ -1,0 +1,190 @@
+#set baud rate
+stty -F /dev/ttyO0 115200
+
+#reset IRQ flipflop - on error 106 read 1, this code resets 106 to 0
+gpio 106 -d i
+gpio 107 -d ho 0
+gpio 107 -d ho 1
+
+#all select lines inactive
+gpio 68 -d ho 1
+gpio 69 -d ho 1
+gpio 70 -d ho 1
+gpio 72 -d ho 1
+
+#configure motor1
+gpio 68 -d i
+echo -en "\xe0" > /dev/ttyO0
+usleep 100
+echo -en "\x01" > /dev/ttyO0
+usleep 100
+echo -en "\x40" > /dev/ttyO0
+usleep 100
+gpio 68 -d ho 1
+
+#configure motor2
+gpio 69 -d i
+echo -en "\xe0" > /dev/ttyO0
+usleep 100
+echo -en "\x02" > /dev/ttyO0
+usleep 100
+echo -en "\x40" > /dev/ttyO0
+usleep 100
+gpio 69 -d ho 1
+
+#configure motor3
+gpio 70 -d i
+echo -en "\xe0" > /dev/ttyO0
+usleep 100
+echo -en "\x03" > /dev/ttyO0
+usleep 100
+echo -en "\x40" > /dev/ttyO0
+usleep 100
+gpio 70 -d ho 1
+
+#configure motor4
+gpio 71 -d i
+echo -en "\xe0" > /dev/ttyO0
+usleep 100
+echo -en "\x04" > /dev/ttyO0
+usleep 100
+echo -en "\x40" > /dev/ttyO0
+usleep 100
+gpio 71 -d ho 1
+
+#all select lines active
+gpio 68 -d i
+gpio 69 -d i
+gpio 70 -d i
+gpio 71 -d i
+
+#start multicast
+echo -en "\xa0" > /dev/ttyO0
+usleep 100
+echo -en "\xa0" > /dev/ttyO0
+usleep 100
+echo -en "\xa0" > /dev/ttyO0
+usleep 100
+echo -en "\xa0" > /dev/ttyO0
+usleep 100
+echo -en "\xa0" > /dev/ttyO0
+usleep 100
+echo -en "\xa0" > /dev/ttyO0
+usleep 100
+
+#reset IRQ flipflop - on error 106 read 1, this code resets 106 to 0
+gpio 106 -d i
+gpio 107 -d ho 0
+gpio 107 -d ho 1
+
+#multicast loop
+while true
+do
+
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+#all leds orange
+echo -en "\x7f\xf0" >/dev/ttyO0
+
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+echo -en "\x3F\xFF\xFF\xFF\xFE" >/dev/ttyO0
+usleep 5000
+#all leds off
+echo -en "\x60\x00" >/dev/ttyO0
+
+done
